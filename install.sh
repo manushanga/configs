@@ -1,3 +1,3 @@
 #! /bin/bash
 
-ln -s $HOME/config/nvim_init.vim  $HOME/.config/nvim/init.vim
+ln -s $HOME/configs/nvim_init.vim  $HOME/.config/nvim/init.vim
