@@ -45,12 +45,13 @@ let g:LanguageClient_serverCommands = {
 \       run(server);
 \   '],
 \   'c': ['clangd'],
+\   'cpp': ['clangd'],
 \   'python': ['pyls']
 \ }
 " switch bufs without save
 set hidden
 
 nnoremap <silent> <F5> :call LanguageClient_contextMenu()<CR>
-nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <F9> :call LanguageClient_textDocument_definition()<CR>
+"nnoremap <silent> <F8> :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
