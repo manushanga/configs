@@ -1,4 +1,8 @@
 call g:plug#begin()
+  " theme
+  Plug 'gosukiwi/vim-atom-dark'
+  Plug 'joshdick/onedark.vim'
+  Plug 'zacanger/angr.vim'
   " auto detect indent
   Plug 'tpope/vim-sleuth'
   " Project exp
@@ -7,9 +11,9 @@ call g:plug#begin()
   Plug 'JuliaEditorSupport/julia-vim'
   Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
   Plug 'junegunn/fzf'
+  Plug 'junegunn/fzf.vim'
   Plug 'ncm2/ncm2'
   Plug 'roxma/nvim-yarp'
-
   " enable ncm2 for all buffers
   autocmd BufEnter * call ncm2#enable_for_buffer()
 
@@ -21,6 +25,9 @@ call g:plug#begin()
   Plug 'ncm2/ncm2-bufword'
   Plug 'ncm2/ncm2-path'
 call g:plug#end()
+" set up theme
+syntax on
+colorscheme angr
 " deoplete
 let g:deoplete#enable_at_startup = 1
 " julia
@@ -53,5 +60,5 @@ set hidden
 
 nnoremap <silent> <F5> :call LanguageClient_contextMenu()<CR>
 nnoremap <silent> <F9> :call LanguageClient_textDocument_definition()<CR>
-"nnoremap <silent> <F8> :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> <F8> :call LanguageClient_textDocument_documentSymbol()<CR>
 nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
