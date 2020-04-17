@@ -27,6 +27,10 @@ call g:plug#begin()
 call g:plug#end()
 " set up theme
 syntax on
+set wildmode=longest,list,full
+set termguicolors
+set cursorline
+set cursorcolumn
 colorscheme angr
 " deoplete
 let g:deoplete#enable_at_startup = 1
