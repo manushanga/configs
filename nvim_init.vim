@@ -3,6 +3,8 @@ call g:plug#begin()
   Plug 'gosukiwi/vim-atom-dark'
   Plug 'joshdick/onedark.vim'
   Plug 'zacanger/angr.vim'
+  Plug 'morhetz/gruvbox'
+  Plug 'caglartoklu/borlandp.vim'
   " auto detect indent
   Plug 'tpope/vim-sleuth'
   " Project exp
@@ -26,12 +28,17 @@ call g:plug#begin()
   Plug 'ncm2/ncm2-path'
 call g:plug#end()
 " set up theme
+" let g:gruvbox_contrast_dark = 'hard'
+
 syntax on
+set bg=dark
 set wildmode=longest,list,full
 set termguicolors
 set cursorline
 set cursorcolumn
-colorscheme angr
+set nowrap
+colorscheme atom-dark
+
 " deoplete
 let g:deoplete#enable_at_startup = 1
 " julia
