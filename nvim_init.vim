@@ -14,6 +14,7 @@ call g:plug#begin()
   Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
   Plug 'junegunn/fzf'
   Plug 'junegunn/fzf.vim'
+  Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
   Plug 'ncm2/ncm2'
   Plug 'roxma/nvim-yarp'
   " enable ncm2 for all buffers
@@ -37,7 +38,8 @@ set termguicolors
 set cursorline
 set cursorcolumn
 set nowrap
-colorscheme atom-dark
+set showcmd
+colorscheme angr
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
@@ -48,7 +50,7 @@ let g:default_julia_version = '1.0'
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_diagnosticsEnable = 1
 let g:LanguageClient_diagnosticsSignsMax = 0
-"let g:LanguageClient_diagnosticsList = 'Location'
+let g:LanguageClient_diagnosticsList = 'Location'
 let g:LanguageClient_serverCommands = {
 \   'julia': ['/home/madura/Downloads/julia-1.0.5/bin/julia', '--startup-file=no', '--history-file=no', '-e', '
 \       using LanguageServer;
@@ -64,12 +66,45 @@ let g:LanguageClient_serverCommands = {
 \   '],
 \   'c': ['clangd'],
 \   'cpp': ['clangd'],
-\   'python': ['pyls']
+\   'python': ['pyls'],
+\   'rust': ['/home/madura/Downloads/rust-analyzer-linux']
 \ }
+
+function! HeaderToggle() " bang for overwrite when saving vimrc
+let file_path = expand("%")
+let file_name = expand("%<")
+let extension = split(file_path, '\.')[-1] " '\.' is how you really split on dot
+let err_msg = "There is no file "
+
+if extension == "c" || extension == "cpp"
+    let next_file = join([file_name, ".h"], "")
+
+    if filereadable(next_file)
+    :e %<.h
+    else
+        echo join([err_msg, next_file], "")
+    endif
+elseif extension == "h"
+    let next_file = join([file_name, ".c"], "")
+
+    if filereadable(next_file)
+        :e %<.c
+    else
+        let next_file = join([file_name, ".cpp"], "")
+        if filereadable(next_file)
+            :e %<.cpp 
+        else
+            echo join([err_msg, next_file], "")
+        endif
+    endif
+endif
+endfunction
+
 " switch bufs without save
 set hidden
-
-nnoremap <silent> <F5> :call LanguageClient_contextMenu()<CR>
-nnoremap <silent> <F9> :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <F4> :call HeaderToggle()<CR>
+nnoremap <leader>v <cmd>CHADopen<cr>
+nnoremap <leader>c :call LanguageClient_contextMenu()<CR>
+nnoremap <leader>d :call LanguageClient_textDocument_definition()<CR>
 nnoremap <silent> <F8> :call LanguageClient_textDocument_documentSymbol()<CR>
-nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+nnoremap <leader>r :call LanguageClient_textDocument_rename()<CR>
