@@ -30,7 +30,6 @@ call g:plug#begin()
 call g:plug#end()
 " set up theme
 " let g:gruvbox_contrast_dark = 'hard'
-
 syntax on
 set bg=dark
 set wildmode=longest,list,full
@@ -49,8 +48,8 @@ let g:default_julia_version = '1.0'
 " language server
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_diagnosticsEnable = 1
-let g:LanguageClient_diagnosticsSignsMax = 0
-let g:LanguageClient_diagnosticsList = 'Location'
+let g:LanguageClient_diagnosticsSignsMax = v:null
+let g:LanguageClient_useVirtualText = "No"
 let g:LanguageClient_serverCommands = {
 \   'julia': ['/home/madura/Downloads/julia-1.0.5/bin/julia', '--startup-file=no', '--history-file=no', '-e', '
 \       using LanguageServer;
