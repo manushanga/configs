@@ -29,16 +29,19 @@ call g:plug#begin()
   Plug 'ncm2/ncm2-path'
 call g:plug#end()
 " set up theme
-" let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_contrast_dark = 'hard'
 syntax on
+" set gutter always on
+set signcolumn=yes
 set bg=dark
+set guifont=screen
 set wildmode=longest,list,full
 set termguicolors
 set cursorline
 set cursorcolumn
 set nowrap
 set showcmd
-colorscheme angr
+colorscheme atom-dark
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
@@ -66,7 +69,7 @@ let g:LanguageClient_serverCommands = {
 \   'c': ['clangd'],
 \   'cpp': ['clangd'],
 \   'python': ['pyls'],
-\   'rust': ['/home/madura/Downloads/rust-analyzer-linux']
+\   'rust': ['/home/madura/Downloads/rust-analyzer-linux'],
 \ }
 
 function! HeaderToggle() " bang for overwrite when saving vimrc
