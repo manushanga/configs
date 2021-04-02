@@ -4,6 +4,7 @@ call g:plug#begin()
   Plug 'joshdick/onedark.vim'
   Plug 'zacanger/angr.vim'
   Plug 'morhetz/gruvbox'
+  Plug 'nanotech/jellybeans.vim'
   Plug 'caglartoklu/borlandp.vim'
   " auto detect indent
   Plug 'tpope/vim-sleuth'
@@ -41,8 +42,7 @@ set cursorline
 set cursorcolumn
 set nowrap
 set showcmd
-colorscheme atom-dark
-
+colorscheme jellybeans
 " deoplete
 let g:deoplete#enable_at_startup = 1
 " julia
