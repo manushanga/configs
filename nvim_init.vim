@@ -107,6 +107,6 @@ set hidden
 nnoremap <silent> <F4> :call HeaderToggle()<CR>
 nnoremap <leader>v <cmd>CHADopen<cr>
 nnoremap <leader>c :call LanguageClient_contextMenu()<CR>
-nnoremap <leader>d :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <F9> :call LanguageClient_textDocument_definition()<CR>
 nnoremap <silent> <F8> :call LanguageClient_textDocument_documentSymbol()<CR>
 nnoremap <leader>r :call LanguageClient_textDocument_rename()<CR>
