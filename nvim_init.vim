@@ -49,6 +49,9 @@ let g:deoplete#enable_at_startup = 1
 let g:default_julia_version = '1.0'
 
 " language server
+let g:LanguageClient_loggingLevel='DEBUG'
+let g:LanguageClient_loggingFile =  expand('~/.local/share/nvim/LanguageClient.log') 
+let g:LanguageClient_settingsPath = [ '~/.config/nvim/lsp_settings.json' ]
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_diagnosticsEnable = 1
 let g:LanguageClient_diagnosticsSignsMax = v:null
@@ -68,9 +71,10 @@ let g:LanguageClient_serverCommands = {
 \   '],
 \   'c': ['clangd'],
 \   'cpp': ['clangd'],
-\   'python': ['pyls'],
+\   'python': ['pyls', '-vv', '--log-file', '/tmp/pylslog.txt'],
 \   'rust': ['/home/madura/Downloads/rust-analyzer-linux'],
 \ }
+
 
 function! HeaderToggle() " bang for overwrite when saving vimrc
 let file_path = expand("%")
@@ -104,9 +108,13 @@ endfunction
 
 " switch bufs without save
 set hidden
+
+
 nnoremap <silent> <F4> :call HeaderToggle()<CR>
 nnoremap <leader>v <cmd>CHADopen<cr>
 nnoremap <leader>c :call LanguageClient_contextMenu()<CR>
-nnoremap <silent> <F9> :call LanguageClient_textDocument_definition()<CR>
-nnoremap <silent> <F8> :call LanguageClient_textDocument_documentSymbol()<CR>
+nnoremap <F9> :call LanguageClient_textDocument_definition()<CR>
+inoremap <F9> <ESC>:call LanguageClient_textDocument_definition()<CR>i
+nnoremap <F8> :call LanguageClient_textDocument_documentSymbol()<CR>
+inoremap <F8> <ESC>:call LanguageClient_textDocument_documentSymbol()<CR>i
 nnoremap <leader>r :call LanguageClient_textDocument_rename()<CR>
