@@ -42,6 +42,7 @@ set cursorline
 set cursorcolumn
 set nowrap
 set showcmd
+set mouse=a
 colorscheme jellybeans
 " deoplete
 let g:deoplete#enable_at_startup = 1
@@ -118,3 +119,7 @@ inoremap <F9> <ESC>:call LanguageClient_textDocument_definition()<CR>i
 nnoremap <F8> :call LanguageClient_textDocument_documentSymbol()<CR>
 inoremap <F8> <ESC>:call LanguageClient_textDocument_documentSymbol()<CR>i
 nnoremap <leader>r :call LanguageClient_textDocument_rename()<CR>
+
+vnoremap <C-c> "+y
+map <C-v> "+p
+
